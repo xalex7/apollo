@@ -42,3 +42,19 @@ while True:
 print("\nYour favorite activities are:")
 for activity in activities:
     print(f"- {activity}")
+
+# Option to remove an activity:
+wantToRemove = input("\nWould you like to remove any of the activites? ")
+if wantToRemove.lower() == "yes":
+    removeActivity = input("Which activity would you like to remove? ")
+    if removeActivity in activities:
+        activities.remove(removeActivity)
+        print(f"{removeActivity} was removed.")
+    else:
+        print(f"{removeActivity} is not in your activities list.")
+    
+    print("Updated list of activities:")
+    for activity in activities:
+        print(f"- {activity}")
+else:
+    print("\nThank You!\n")
