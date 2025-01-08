@@ -9,6 +9,7 @@ def main():
     check_even_or_odd()
     favorite_activities = collect_favorite_activites()
     save_activities(favorite_activities)
+    visualize_activities(favorite_activities)
 
 # Custom message based on age:
 def greet_user(name, age):
@@ -85,6 +86,33 @@ def load_activities():
             return [line.strip() for line in file.readlines()]
     except FileNotFoundError:
         return []
+
+def visualize_activities(activities):
+    try:
+        import matplotlib.pyplot as plt # Imports the library only when the function is called.
+    except:
+        import subprocess
+        import sys
+        print("Installing metplotlib...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "matplotlib"])
+        print("Matplotlib installed successfully!")
+        import matplotlib.pyplot as plt
+
+    # Prepare data:
+    activiy_names = activities
+    activities_count = [1] * len(activities) # If I don't add [1] then the chart numbers will be similar to the number of the items in the list.
+
+    # Create the bar chart:
+    plt.bar(activiy_names, activities_count)
+
+    # Costomize the chart:
+    plt.xlabel("Activities")
+    plt.ylabel("Frequency")
+    plt.title("Your Favorite Activites")
+
+    # Display the chart:
+    plt.show()
+
     
 if __name__ == "__main__":
     main()
